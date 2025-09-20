@@ -1,0 +1,33 @@
+#big-container{
+    align-content: center;
+    margin-top: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 20px;
+    line-height: 1.5;
+}
+text{
+    font-family: 'Times New Roman', Times, serif;
+    text-transform: capitalize;
+}
+#subtitle{
+    color: #006EB6;
+    text-align: center;
+    border-bottom: #444;
+    border-width: 10px;
+}
+#title{
+    text-align: center;
+
+}
+.p,.li{
+    font-size: 20px;
+}
+.footer{
+    align-content: center;
+}
+.logo{
+    width: 150px;
+    margin-left: 40%;
+    margin-right: 40%;
+}
