@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=family=Mooli&display=swap");
+ :root {
+ --primary-color: #52489c;
+ --secondary-color: #59c3c3;
+ --accent-color: #f45b69;
+ --text-dark: #333;
+ --text-light: #ebebeb;
+ --primary-font: Arial, Helvetica,sans-serif;
+ --secondary-font: Mooli, san-serif;
+ }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--primary-font);
+  background-color: #dcdcdc;
+  color: #000;
+  text-align: center;
+}
+
+header {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 20px 0 10px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.icon {
+  font-size: 1.6rem;
+}
+
+nav {
+  margin-bottom: 10px;
+}
+
+nav a {
+  color: var(--text-light);
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1.05rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  background-color: #e6e6e6;
+  padding: 20px 0 40px;
+}
+
+main h2 {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+#h-dif {
+    padding-top: 20px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  justify-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.gallery img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  box-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+  border: 4px solid white;
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 12px 0;
+  font-size: 0.9rem;
+  margin-top: 30px;
+}
+
+@media (max-width: 1000px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+  nav a {
+    display: inline-block;
+    margin: 5px 8px;
+  }
+}
