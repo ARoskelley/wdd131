@@ -1,42 +1,63 @@
-console.log("main.js LOADED");
-
 import recipes from "./recipes.mjs";
-console.log("recipes IMPORTED:", recipes);
 
+const container = document.getElementById("recipes-container");
 
-const container = document.getElementById('recipes-container');
+function recipeTemplate(recipe) {
+	const tagList = recipe.tags
+		.map(tag => `<li>${tag}</li>`)
+		.join("");
 
-function renderStars(amount) {
-  let fullStars = Math.floor(amount);
-  let halfStar = amount % 1 !== 0;
-  let stars = '';
+	const fullStars = Math.floor(recipe.rating);
+	const hasHalf = recipe.rating % 1 !== 0;
+	const emptyStars = 5 - Math.ceil(recipe.rating);
 
-  for (let i = 0; i < fullStars; i++) stars += '★';
+	let starIcons = "";
 
-  if (halfStar) stars += '☆';
+	for (let i = 0; i < fullStars; i++) {
+		starIcons += `<span aria-hidden="true" class="icon-star">⭐</span>`;
+	}
 
-  while (stars.length < 5) stars += '☆';
+	if (hasHalf) {
+		starIcons += `<span aria-hidden="true" class="icon-star-half">☆</span>`;
+	}
 
-  return stars;
+	for (let i = 0; i < emptyStars; i++) {
+		starIcons += `<span aria-hidden="true" class="icon-star-empty">☆</span>`;
+	}
+
+	return `
+<figure class="recipe">
+	<img src="${recipe.image}" alt="Image of ${recipe.name}" />
+	<figcaption>
+
+		<ul class="recipe__tags">
+			${tagList}
+		</ul>
+
+		<h2><a href="#">${recipe.name}</a></h2>
+
+		<p class="recipe__ratings">
+			<span
+				class="rating"
+				role="img"
+				aria-label="Rating: ${recipe.rating} out of 5 stars"
+			>
+				${starIcons}
+			</span>
+		</p>
+
+		<p class="recipe__description">
+			${recipe.description}
+		</p>
+
+	</figcaption>
+</figure>`;
 }
 
-function renderRecipe(recipe) {
-  return `
-    <article class="recipe-card">
-      <img src="${recipe.image}" alt="${recipe.name}">
-
-      <div class="recipe-info">
-        <span class="tag">${recipe.tags[0]}</span>
-        <h2>${recipe.name}</h2>
-        <div class="rating">${renderStars(recipe.rating)}</div>
-        <p>${recipe.description}</p>
-      </div>
-    </article>
-  `;
+function loadRandomRecipe() {
+	const randomIndex = Math.floor(Math.random() * recipes.length);
+	const recipe = recipes[randomIndex];
+	container.innerHTML = recipeTemplate(recipe);
 }
 
-function loadRecipes() {
-  container.innerHTML = recipes.map(r => renderRecipe(r)).join('');
-}
-
-loadRecipes();
+loadRandomRecipe();
